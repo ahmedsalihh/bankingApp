@@ -1,8 +1,8 @@
-package org.salih.banking.service.servıceImpl;
+package org.salih.banking.service.serviceImpl;
 
 import org.salih.banking.model.User;
 import org.salih.banking.service.UserService;
-import org.salih.banking.service.repositories.UserRepository;
+import org.salih.banking.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

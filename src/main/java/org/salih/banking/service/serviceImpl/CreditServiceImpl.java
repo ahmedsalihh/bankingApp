@@ -1,13 +1,12 @@
-package org.salih.banking.service.servıceImpl;
+package org.salih.banking.service.serviceImpl;
 
 import org.salih.banking.model.Credit;
 import org.salih.banking.service.CreditService;
-import org.salih.banking.service.repositories.CreditsRepository;
+import org.salih.banking.repositories.CreditsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

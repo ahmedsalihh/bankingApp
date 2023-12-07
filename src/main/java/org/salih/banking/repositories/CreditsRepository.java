@@ -1,4 +1,4 @@
-package org.salih.banking.service.repositories;
+package org.salih.banking.repositories;
 
 import org.salih.banking.model.Credit;
 import org.springframework.data.repository.PagingAndSortingRepository;
