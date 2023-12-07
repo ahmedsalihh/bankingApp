@@ -9,14 +9,14 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "credits")
-public class Credit {
-
+@Table(name = "users")
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String status;
+    private String firstname;
+    private String lastname;
     @Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
