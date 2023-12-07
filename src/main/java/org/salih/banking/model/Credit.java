@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,9 +18,17 @@ public class Credit {
     private long id;
 
     private String status;
+
+    private BigDecimal amount;
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
+
     @Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
+
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 }

@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -16,10 +17,16 @@ public class User {
     private long id;
 
     private String firstname;
+
     private String lastname;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Credit> credits;
+
     @Column(updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
+
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 }
