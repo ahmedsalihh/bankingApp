@@ -7,29 +7,27 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Data
-@Table(name = "credits")
-public class Credit {
+@Table(name = "installments")
+public class Installment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private BigDecimal totalAmount;
+
+    private BigDecimal remainingAmount;
+
     private String status;
 
-    private BigDecimal amount;
-
-    private int installmentCount;
+    private LocalDateTime dueDate;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
-
-    @OneToMany(mappedBy = "credit", cascade = CascadeType.ALL)
-    private List<Installment> installments;
+    @JoinColumn(name = "creditId")
+    private Credit credit;
 
     @Column(updatable = false)
     @CreationTimestamp
