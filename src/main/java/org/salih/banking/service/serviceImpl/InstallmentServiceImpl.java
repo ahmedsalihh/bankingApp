@@ -6,13 +6,13 @@ import org.salih.banking.model.Installment;
 import org.salih.banking.model.PaymentRequest;
 import org.salih.banking.repositories.InstallmentRepository;
 import org.salih.banking.service.InstallmentService;
+import org.salih.banking.utils.BankingUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -39,6 +39,21 @@ public class InstallmentServiceImpl implements InstallmentService {
             installmentRepository.save(ins);
         } else {
             throw new NoInstallmentFoundException("There is no such an Installment!!");
+        }
+    }
+
+    @Override
+    public void calculateOverdue() {
+        List<Installment> installments = installmentRepository.findAll();
+        for (Installment ins : installments) {
+            LocalDate today = LocalDate.now();
+            LocalDate dueDate = ins.getDueDate();
+            if (dueDate.isAfter(today)) {
+                BigDecimal overdue = BankingUtils.calculateOverdue(today, dueDate, ins.getTotalAmount());
+                ins.setTotalAmount(ins.getTotalAmount().add(overdue));
+                ins.setRemainingAmount(ins.getTotalAmount().add(overdue));
+                installmentRepository.save(ins);
+            }
         }
     }
 }

@@ -5,4 +5,6 @@ import org.salih.banking.model.PaymentRequest;
 
 public interface InstallmentService {
     void pay(PaymentRequest paymentRequest) throws NoInstallmentFoundException;
+
+    void calculateOverdue();
 }
