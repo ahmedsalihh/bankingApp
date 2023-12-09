@@ -19,7 +19,7 @@ public class InstallmentConverter {
         List<Installment> installments = new ArrayList<>();
         LocalDate initialDate = LocalDate.now();
 
-        MathContext mathContext = new MathContext(2, RoundingMode.HALF_UP);
+        MathContext mathContext = new MathContext(4, RoundingMode.HALF_UP);
         BigDecimal singleInstallmentAmount = credit.getAmount().divide(BigDecimal.valueOf(credit.getInstallmentCount()), mathContext);
 
         for (int i = 0; i < credit.getInstallmentCount(); i++) {
