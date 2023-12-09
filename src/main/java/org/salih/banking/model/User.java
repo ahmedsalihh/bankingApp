@@ -1,5 +1,6 @@
 package org.salih.banking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -20,6 +21,7 @@ public class User {
 
     private String lastname;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Credit> credits;
 

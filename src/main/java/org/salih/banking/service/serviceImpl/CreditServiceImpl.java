@@ -57,8 +57,14 @@ public class CreditServiceImpl implements CreditService {
 
         List<Installment> installments = InstallmentConverter.generateInstallments(credit);
 
-        installmentRepository.saveAll(installments);
+        installments.forEach(installmentRepository::save);
+        credit.setInstallments(installments);
 
         return credit;
+    }
+
+    @Override
+    public List<Credit> listCreditsByUserId(Long userId) {
+        return creditsRepository.findByUserId(userId);
     }
 }

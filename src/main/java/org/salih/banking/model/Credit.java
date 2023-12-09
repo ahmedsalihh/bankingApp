@@ -1,5 +1,6 @@
 package org.salih.banking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,6 +25,7 @@ public class Credit {
 
     private int installmentCount;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;

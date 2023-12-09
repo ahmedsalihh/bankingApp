@@ -26,7 +26,12 @@ public class CreditController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Credit> addCredit(@RequestBody CreditRequest creditRequest){
+    public ResponseEntity<Credit> addCredit(@RequestBody CreditRequest creditRequest) {
         return ResponseEntity.ok(creditService.addCredit(creditRequest));
+    }
+
+    @GetMapping("/list/{userId}")
+    public ResponseEntity<List<Credit>> listCreditsByUserId(@PathVariable("userId") Long userId) {
+        return ResponseEntity.ok(creditService.listCreditsByUserId(userId));
     }
 }

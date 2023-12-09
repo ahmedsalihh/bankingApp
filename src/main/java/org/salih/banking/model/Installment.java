@@ -1,5 +1,6 @@
 package org.salih.banking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,6 +26,7 @@ public class Installment {
 
     private LocalDateTime dueDate;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "creditId")
     private Credit credit;

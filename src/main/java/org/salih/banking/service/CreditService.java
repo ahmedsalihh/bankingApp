@@ -9,4 +9,6 @@ public interface CreditService {
     List<Credit> listCredits(int page, int pageSize);
 
     Credit addCredit(CreditRequest creditRequest);
+
+    List<Credit> listCreditsByUserId(Long userId);
 }
