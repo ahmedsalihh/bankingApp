@@ -1,5 +1,6 @@
 package org.salih.banking.controller;
 
+import org.salih.banking.StatusEnum;
 import org.salih.banking.model.Credit;
 import org.salih.banking.model.CreditRequest;
 import org.salih.banking.service.CreditService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -21,8 +23,12 @@ public class CreditController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Credit>> listCredits(@RequestParam(defaultValue = "0") int pageNo, @RequestParam(defaultValue = "10") int pageSize) {
-        return ResponseEntity.ok(creditService.listCredits(pageNo, pageSize));
+    public ResponseEntity<List<Credit>> listCredits(
+            @RequestParam(defaultValue = "0") int pageNo,
+            @RequestParam(defaultValue = "10") int pageSize,
+            @RequestParam(required = false) StatusEnum status,
+            @RequestParam(required = false) LocalDate createdTime) {
+        return ResponseEntity.ok(creditService.listCredits(pageNo, pageSize, status, createdTime));
     }
 
     @PostMapping("/add")

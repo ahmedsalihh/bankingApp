@@ -1,5 +1,6 @@
 package org.salih.banking.service.serviceImpl;
 
+import org.salih.banking.StatusEnum;
 import org.salih.banking.converter.InstallmentConverter;
 import org.salih.banking.model.Credit;
 import org.salih.banking.model.CreditRequest;
@@ -16,7 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -34,12 +35,19 @@ public class CreditServiceImpl implements CreditService {
     }
 
     @Override
-    public List<Credit> listCredits(int pageNo, int pageSize) {
-        Page<Credit> pagedResult;
+    public List<Credit> listCredits(int pageNo, int pageSize, StatusEnum status, LocalDate createdTime) {
+        Page<Credit> pagedResult = null;
         Pageable paging = PageRequest.of(pageNo, pageSize);
 
-        pagedResult = creditsRepository.findAll(paging);
-        return pagedResult.toList();
+        if (status == null && createdTime == null) {
+            pagedResult = creditsRepository.findAll(paging);
+        } else if (status == null) {
+            pagedResult = creditsRepository.findByCreatedAt(createdTime, paging);
+        } else if (createdTime == null) {
+            pagedResult = creditsRepository.findByStatus(status, paging);
+        }
+
+        return pagedResult != null ? pagedResult.toList() : null;
     }
 
     @Override
@@ -48,7 +56,7 @@ public class CreditServiceImpl implements CreditService {
         User user = userRepository.findById(creditRequest.getUserId()).orElseThrow(() -> new RuntimeException("User not found"));
 
         Credit credit = new Credit();
-        credit.setStatus("created");
+        credit.setStatus(StatusEnum.CREATED);
         credit.setAmount(creditRequest.getAmount());
         credit.setInstallmentCount(creditRequest.getInstallmentCount());
         credit.setUser(user);

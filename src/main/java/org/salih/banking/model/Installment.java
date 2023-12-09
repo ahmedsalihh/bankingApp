@@ -5,8 +5,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.salih.banking.StatusEnum;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,9 +24,9 @@ public class Installment {
 
     private BigDecimal remainingAmount;
 
-    private String status;
+    private StatusEnum status;
 
-    private LocalDateTime dueDate;
+    private LocalDate dueDate;
 
     @JsonIgnore
     @ManyToOne
@@ -33,8 +35,8 @@ public class Installment {
 
     @Column(updatable = false)
     @CreationTimestamp
-    private LocalDateTime createdAt;
+    private LocalDate createdAt;
 
     @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    private LocalDate updatedAt;
 }
