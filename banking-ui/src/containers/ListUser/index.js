@@ -36,16 +36,21 @@ const ListUsers = () => {
               {c.title}
             </th>
           ))}
+          <th scope='col'>Actions</th>
         </tr>
       </thead>
       <tbody>
         {users
           ? users.map(u => (
               <tr key={u.id}>
-                <th scope='row'>{u.id}</th>
                 {columns.map(c => (
                   <td key={c.title}>{u[c.field]}</td>
                 ))}
+                <td>
+                  <button type='button' className='btn btn-primary'>
+                    List Credits
+                  </button>
+                </td>
               </tr>
             ))
           : null}

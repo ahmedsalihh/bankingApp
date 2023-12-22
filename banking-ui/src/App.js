@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import ListUsers from './containers/ListUser';
-import AddUser from './containers/AddUser';
+import { routes } from './routes';
 
 const App = () => {
   return (
@@ -9,8 +8,9 @@ const App = () => {
       <Navbar />
       <div className='container'>
         <Routes>
-          <Route exact path='/' element={<ListUsers />} />
-          <Route exact path='/addUser' element={<AddUser />} />
+          {routes.map(r => (
+            <Route exact path={r.path} element={r.component} />
+          ))}
         </Routes>
       </div>
     </>

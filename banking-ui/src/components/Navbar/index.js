@@ -1,4 +1,5 @@
 import React from 'react';
+import { routes } from '../../routes';
 
 const Navbar = () => {
   return (
@@ -20,16 +21,17 @@ const Navbar = () => {
         </button>
         <div className='collapse navbar-collapse' id='navbarNav'>
           <ul className='navbar-nav'>
-            <li className='nav-item'>
-              <a className='nav-link active' aria-current='page' href='/'>
-                User List
-              </a>
-            </li>
-            <li className='nav-item'>
-              <a className='nav-link' href='/addUser'>
-                Add User
-              </a>
-            </li>
+            {routes.map(r => (
+              <li className='nav-item'>
+                <a
+                  className='nav-link'
+                  aria-current='page'
+                  href={r.path}
+                >
+                  {r.title}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
