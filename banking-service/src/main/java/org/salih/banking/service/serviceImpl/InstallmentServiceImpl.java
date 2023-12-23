@@ -56,4 +56,9 @@ public class InstallmentServiceImpl implements InstallmentService {
             }
         }
     }
+
+    @Override
+    public List<Installment> listInstallmentsByCreditId(Long creditId) {
+        return installmentRepository.findByCreditId(creditId);
+    }
 }

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Table from '../../components/Table';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ListUserCredits = () => {
+  const navigate = useNavigate();
+
   const [credits, setCredits] = useState(null);
   let { id } = useParams();
 
@@ -17,7 +19,7 @@ const ListUserCredits = () => {
   };
 
   const handleInstallmentsClick = item => {
-    console.log(item);
+    navigate(`/listCreditInstallments/${item.id}`);
   };
 
   const columns = [
