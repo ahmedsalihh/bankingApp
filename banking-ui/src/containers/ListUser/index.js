@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Table from '../../components/Table';
 
 const columns = [
   {
@@ -12,6 +13,14 @@ const columns = [
   {
     title: 'Last Name',
     field: 'lastname',
+  },
+  {
+    title: 'Actions',
+    field: () => (
+      <button type='button' className='btn btn-primary'>
+        List Credits
+      </button>
+    ),
   },
 ];
 
@@ -27,36 +36,7 @@ const ListUsers = () => {
     setusers(users);
   };
 
-  return (
-    <table className='table'>
-      <thead>
-        <tr>
-          {columns.map(c => (
-            <th key={c.title} scope='col'>
-              {c.title}
-            </th>
-          ))}
-          <th scope='col'>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {users
-          ? users.map(u => (
-              <tr key={u.id}>
-                {columns.map(c => (
-                  <td key={c.title}>{u[c.field]}</td>
-                ))}
-                <td>
-                  <button type='button' className='btn btn-primary'>
-                    List Credits
-                  </button>
-                </td>
-              </tr>
-            ))
-          : null}
-      </tbody>
-    </table>
-  );
+  return <Table columns={columns} data={users} />;
 };
 
 export default ListUsers;
