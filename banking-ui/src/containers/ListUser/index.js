@@ -1,30 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Table from '../../components/Table';
-
-const columns = [
-  {
-    title: 'Id',
-    field: 'id',
-  },
-  {
-    title: 'First Name',
-    field: 'firstname',
-  },
-  {
-    title: 'Last Name',
-    field: 'lastname',
-  },
-  {
-    title: 'Actions',
-    field: () => (
-      <button type='button' className='btn btn-primary'>
-        List Credits
-      </button>
-    ),
-  },
-];
+import { useNavigate } from 'react-router-dom';
 
 const ListUsers = () => {
+  const navigate = useNavigate();
+
   const [users, setusers] = useState(null);
   useEffect(() => {
     listUsers();
@@ -35,6 +15,37 @@ const ListUsers = () => {
     const users = await response.json();
     setusers(users);
   };
+
+  const handleListCreditsClick = id => {
+    navigate(`/listCredits/${id}`);
+  };
+
+  const columns = [
+    {
+      title: 'Id',
+      field: 'id',
+    },
+    {
+      title: 'First Name',
+      field: 'firstname',
+    },
+    {
+      title: 'Last Name',
+      field: 'lastname',
+    },
+    {
+      title: 'Actions',
+      field: item => (
+        <button
+          type='button'
+          className='btn btn-primary'
+          onClick={() => handleListCreditsClick(item.id)}
+        >
+          List Credits
+        </button>
+      ),
+    },
+  ];
 
   return <Table columns={columns} data={users} />;
 };

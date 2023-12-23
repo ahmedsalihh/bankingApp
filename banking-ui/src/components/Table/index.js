@@ -18,7 +18,7 @@ const Table = ({ columns, data }) => {
               <tr key={u.id}>
                 {columns.map(c => {
                   if (c.title === 'Actions') {
-                    return <td key={c.title}>{c.field()}</td>;
+                    return <td key={c.title}>{c.field(u)}</td>;
                   } else {
                     return <td key={c.title}>{u[c.field]}</td>;
                   }

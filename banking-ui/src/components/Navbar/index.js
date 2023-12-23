@@ -21,13 +21,19 @@ const Navbar = () => {
         </button>
         <div className='collapse navbar-collapse' id='navbarNav'>
           <ul className='navbar-nav'>
-            {routes.map(r => (
-              <li className='nav-item' key={r.path}>
-                <a className='nav-link' aria-current='page' href={r.path}>
-                  {r.title}
-                </a>
-              </li>
-            ))}
+            {routes.map(r => {
+              if (r.visible) {
+                return (
+                  <li className='nav-item' key={r.path}>
+                    <a className='nav-link' aria-current='page' href={r.path}>
+                      {r.title}
+                    </a>
+                  </li>
+                );
+              } else {
+                return null;
+              }
+            })}
           </ul>
         </div>
       </div>
