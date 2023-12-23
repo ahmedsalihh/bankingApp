@@ -9,7 +9,7 @@ const App = () => {
       <div className='container'>
         <Routes>
           {routes.map(r => (
-            <Route exact path={r.path} element={r.component} />
+            <Route key={r.path} exact path={r.path} element={r.component} />
           ))}
         </Routes>
       </div>

@@ -22,12 +22,8 @@ const Navbar = () => {
         <div className='collapse navbar-collapse' id='navbarNav'>
           <ul className='navbar-nav'>
             {routes.map(r => (
-              <li className='nav-item'>
-                <a
-                  className='nav-link'
-                  aria-current='page'
-                  href={r.path}
-                >
+              <li className='nav-item' key={r.path}>
+                <a className='nav-link' aria-current='page' href={r.path}>
                   {r.title}
                 </a>
               </li>
