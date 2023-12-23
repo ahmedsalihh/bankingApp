@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AddUser = () => {
+  const navigate = useNavigate();
+
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
 
@@ -14,7 +17,7 @@ const AddUser = () => {
   };
 
   const addUser = async body => {
-    const response = await fetch('http://localhost:8080/users/add', {
+    await fetch('http://localhost:8080/users/add', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -22,7 +25,7 @@ const AddUser = () => {
       },
       body: JSON.stringify(body),
     });
-    console.log(response);
+    navigate(`/`);
   };
 
   return (

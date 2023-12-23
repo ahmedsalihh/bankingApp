@@ -36,7 +36,7 @@ const ListCreditInstallments = () => {
   };
 
   const payInstallment = async body => {
-    const response = await fetch('http://localhost:8080/installments/pay', {
+    await fetch('http://localhost:8080/installments/pay', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -128,7 +128,7 @@ const ListCreditInstallments = () => {
                     className='form-control'
                     id='amount'
                     value={amount}
-                    placeholder='Enter your name'
+                    placeholder='Enter your amount'
                   />
                 </div>
               </form>
